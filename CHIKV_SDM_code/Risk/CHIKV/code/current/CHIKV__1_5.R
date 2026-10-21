@@ -10,20 +10,20 @@ set.seed(123)
 #Section 1: Loading Variable Data
 #A total of 16 variables were grouped into 4 categories: 
 #bioclimatic (7), socioeconomic (2), geographical variables (3), and species variables(4).
-env <- raster::stack("wc2.1_2.5m_bio_2.tif",
-                     "wc2.1_2.5m_bio_8.tif",
-                     "wc2.1_2.5m_bio_9.tif",
-                     "wc2.1_2.5m_bio_13.tif",
-                     "wc2.1_2.5m_bio_14.tif",
-                     "wc2.1_2.5m_bio_18.tif",
-                     "wc2.1_2.5m_bio_19.tif",
-                     "Cd_2020_2.5min.tif",
+env <- raster::stack("wc2.1_bio_2.tif",
+                     "wc2.1_bio_8.tif",
+                     "wc2.1_bio_9.tif",
+                     "wc2.1_bio_13.tif",
+                     "wc2.1_bio_14.tif",
+                     "wc2.1_bio_18.tif",
+                     "wc2.1_bio_19.tif",
+                     "Cd_2020.tif",
                      "2019GDP.tif",
-                     "NDVI_2025_2.5min.tif",
-                     "pd_2020_2.5.min.tif",
-                     "PH_1985_2.5min.tif",
-                     "pop_count_2022_2.5.min.tif",
-                     "rp_2020_2.5.min.tif",
+                     "NDVI_2025.tif",
+                     "pd_2020.tif",
+                     "PH_1985.tif",
+                     "pop_count_2022.tif",
+                     "rp_2020.tif",
                      "1__Aedes_aegypti_1_1_present_Distribution_Prediction.tif",
                      "1_Aedes_albopictus_1_1_present_Distribution_Prediction.tif")
 

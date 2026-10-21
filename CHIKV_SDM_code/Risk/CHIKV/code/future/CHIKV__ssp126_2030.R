@@ -11,8 +11,8 @@ set.seed(123)
 env <- raster::stack("bio8.tif",
                      "bio9.tif",
                      "bio18.tif",
-                     "Cd_2020_2.5min.tif",
-                     "NDVI_2025_2.5min.tif",
+                     "Cd_2020.tif",
+                     "NDVI_2025.tif",
                      "1_Aedes_aegypti_ssp126_2030_present_Distribution_Prediction.tif",
                      "1_Aedes_albopictus_ssp126_2030_Distribution_Prediction.tif")
 

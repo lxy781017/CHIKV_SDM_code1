@@ -2,7 +2,7 @@ library(terra)
 library(ggplot2)
 library(tidyterra)
 
-path_pre  <- "F://chikglobal_chinaSDM//chik//Result//future//chik_ssp585_2050//1_chik_ssp585_2050__Distribution_Prediction_bujiaGDP.tif"
+path_pre  <- "F://chikglobal_chinaSDM//chik//Result//future//chik_ssp585_2050//1_chik_ssp585_2050__Distribution_Prediction.tif"
 path_post <- "D://Integrated vector management model//Chikv//result//Medium//ssp585-2050//chik_Medium_ssp585-2050_Distribution_Prediction.tif"
 r_pre  <- rast(path_pre)
 r_post <- rast(path_post)
@@ -28,6 +28,6 @@ ggplot() +
   theme_minimal() +
   labs(
     title = "Chikungunya Distribution Change (2030)",
-    subtitle = "SSP126 vs Low Integrated Vector Management"
+    subtitle = "SSP126 vs Medium Integrated Vector Management"
   )
 

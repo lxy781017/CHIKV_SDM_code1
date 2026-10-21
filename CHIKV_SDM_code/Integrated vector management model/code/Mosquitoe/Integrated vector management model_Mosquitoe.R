@@ -29,20 +29,20 @@ w_rice  <- clamp01(w_rice)
 
 # 2.Parameterization and Model Inputs
 #coverage
-cmax_SR_city  <- 0.50    
-cmax_SR_rural <- 0.15   
+cmax_SR_city  <- 0.70    
+cmax_SR_rural <- 0.35   
 
-cmax_LV_rice  <- 0.45  
-cmax_LV_else  <- 0.10   
+cmax_LV_rice  <- 0.40  
+cmax_LV_else  <- 0.80   
 
-cmax_AD_city  <- 0.30  
-cmax_AD_rural <- 0.15  
+cmax_AD_city  <- 1  
+cmax_AD_rural <- 0.5  
 
 # Technical Efficacy
 eta <- list(
-  SR = c(aeg = 0.55, alb = 0.25), 
-  LV = c(aeg = 0.25, alb = 0.45), 
-  AD = c(aeg = 0.30, alb = 0.30) 
+  SR = c(aeg = 0.72, alb = 0.78), 
+  LV = c(aeg = 0.78, alb = 0.79), 
+  AD = c(aeg = 0.73, alb = 0.78) 
 )
 
 

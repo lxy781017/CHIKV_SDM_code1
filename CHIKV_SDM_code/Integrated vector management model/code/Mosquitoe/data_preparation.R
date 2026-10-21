@@ -1,9 +1,9 @@
 ######## ====== 1.Data Standardization(0–1) ============================================############
 library(terra)
-setwd("G://China_chik//data25min//mosquitos_current_middle//")
+setwd("G://China_chik//data//mosquitos_current_middle//")
 fp_urban_raw <- "urban_2015_China.tif"  
 fp_rice_raw  <- "Rice_Base.tif" 
-out_dir <- "G://China_chik//data25min//mosquitos_current_middle//"
+out_dir <- "G://China_chik//data//mosquitos_current_middle//"
 dir.create(out_dir, showWarnings = FALSE, recursive = TRUE)
 
 r_urban <- rast(fp_urban_raw)
@@ -42,8 +42,8 @@ writeRaster(
 
 
 # ================= 2.Raster alignment and quality assurance =================
-fp_aeg_base <- "D://Integrated vector management model//Mosquitoe//data//SSP585-2050//ae_china_2.5_585-2050.tif"
-fp_alb_base <- "D://Integrated vector management model//Mosquitoe//data//SSP585-2050//alb_china_2.5_585-2050.tif"
+fp_aeg_base <- "D://Integrated vector management model//Mosquitoe//data//SSP585-2050//ae_china_585-2050.tif"
+fp_alb_base <- "D://Integrated vector management model//Mosquitoe//data//SSP585-2050//alb_china_585-2050.tif"
 fp_urban_base <- "D://Integrated vector management model//Mosquitoe//data//SSP585-2050//urban_base_aligned.tif"
 fp_rice_base <- "D://Integrated vector management model//Mosquitoe//data//SSP585-2050//rice_base_aligned.tif"
 

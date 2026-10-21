@@ -24,7 +24,7 @@ pop_raster <- rast("F://chikglobal_chinaSDM//pop_count//pop_china.tif")
 risk_raster <- rast("D://Integrated vector management model//Chikv//result//Risk_Reduction_Map//current//chik_High_current_Risk_Reduction_Map.tif")     
 
 if (!compareGeom(pop_raster, risk_raster, stopOnError = FALSE)) {
-  risk_raster <- resample(risk_raster, pop_raster, method = "near")  
+  risk_raster <- resample(risk_raster, pop_raster, method = "bilinear")  
   risk_raster <- mask(risk_raster, pop_raster)  
 }
 
@@ -47,7 +47,7 @@ if (!dir.exists(output_path)) {
 
 writeRaster(
   x =risk_pop_raster, 
-  filename = paste0(output_path, "RiskPop_After_Low_current_1.tif"),  
+  filename = paste0(output_path, "RiskPop_After_High_current_1.tif"),  
   filetype = "GTiff",  
   overwrite = TRUE  
 )

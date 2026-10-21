@@ -12,12 +12,12 @@ env <- raster::stack("bio8.tif",
                      "bio9.tif",
                      "bio13.tif",
                      "bio14.tif",
-                     "Cd_2020_2.5min.tif",
-                     "NDVI_2025_2.5min.tif",
-                     "pd_2020_2.5.min.tif",
-                     "PH_1985_2.5min.tif",
-                     "pop_count_2022_2.5.min.tif",
-                     "rp_2020_2.5.min.tif")
+                     "Cd_2020.tif",
+                     "NDVI_2025.tif",
+                     "pd_2020.tif",
+                     "PH_1985.tif",
+                     "pop_count_2022.tif",
+                     "rp_2020.tif")
 
 names(env) <- c( "Bio8", "Bio9","Bio13", "Bio14", 
                  "Cd","NDVI",
