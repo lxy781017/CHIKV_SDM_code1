@@ -71,7 +71,7 @@ pres_env <- na.omit(pres_env) #Remained 723 points
 library(usdm)
 
 #Section 3.1: Removing multicollinearity via usdm::vifstep
-vif_result <- vifstep(pres_env, th = 2)
+vif_result <- vifstep(pres_env, th = 5)
 vif_result@results
 
 #Section 3.2: Correlation coefficients of the filtered variables were displayed using a correlation matrix plot.
