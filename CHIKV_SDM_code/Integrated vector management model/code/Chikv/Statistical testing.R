@@ -8,7 +8,7 @@ set.seed(2024)
 # 1. Data Acquisition and Preprocessing
 Population_protection_yield_per_treated_area_path  <- "D://Integrated vector management model//Chikv//result//benefit//current//Map_Stratified_Intervention_Zones_Low.tif"
 smod_path <- "D://Integrated vector management model//Chikv//vari//ghsl_smod_aligned.tif"
-r_Population_protection_yield_per_treated_area <- rast(Population_protection_yield_per_path)
+r_Population_protection_yield_per_treated_area <- rast(Population_protection_yield_per_treated_area_path)
 names(r_Population_protection_yield_per_treated_area) <- "Population_protection_yield_per_Value"
 r_smod <- rast(smod_path)
 r_smod_aligned <- resample(r_smod, r_Population_protection_yield_per_treated_area, method = "near")
@@ -98,7 +98,7 @@ if(nrow(df_analysis) > 0) {
 summary_stats <- df_analysis %>%
   group_by(Zone) %>%
   summarise(
-    Mean = mean(Population_protection_yield_per__treated_areaValue),
+    Mean = mean(Population_protection_yield_per_treated_area_Value),
     Median = median(Population_protection_yield_per_treated_area_Value),
     SD = sd(Population_protection_yield_per_treated_area_Value),
     N = n()

@@ -145,7 +145,7 @@ library(pROC)
 library(e1071)     
 library(ggplot2)   
 set.seed(123) 
-trainIndex <- createDataPartition(all_data$presence, p = 0.75, list = FALSE)
+trainIndex <- createDataPartition(all_data$presence, p = 0.7, list = FALSE)
 train_data <- all_data[trainIndex, ]
 test_data <- all_data[-trainIndex, ]
 x_train <- train_data[, -33] 

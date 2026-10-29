@@ -57,7 +57,6 @@ c_LV <- cmax_LV_rice * w_rice + cmax_LV_else * w_else
 c_LV <- clamp01(c_LV)
 
 c_AD <- cmax_AD_city * w_urban + cmax_AD_rural * w_rural
-c_AD <- clamp01(c_AD * ad_season_factor)
 
 writeRaster(c_SR, file.path(out_dir, "coverage_SR.tif"), overwrite = TRUE, NAflag = -9999)
 writeRaster(c_LV, file.path(out_dir, "coverage_LV.tif"), overwrite = TRUE, NAflag = -9999)
@@ -154,33 +153,33 @@ r_area_km2 <- cellSize(r_risk_base, unit="km")
 r_cost_km2 <- r_effort * r_area_km2
 cat(">>> Running Zonal Statistics...\n")
 
-calc_population_protection_yield_per_treated_area <- function(zone_mask, zone_name) {
+calc_population_protection_yield_per_unit_treated_area <- function(zone_mask, zone_name) {
   pop_val <- global(mask(r_pop_protected, zone_mask, maskvalues=FALSE), "sum", na.rm=TRUE)[1,1]
   cost_val <- global(mask(r_cost_km2, zone_mask, maskvalues=FALSE), "sum", na.rm=TRUE)[1,1]
   efficiency <- pop_val / cost_val
-  return(data.frame(Zone=zone_name, Benefit_Pop=pop_val, Cost_Area=cost_val,Population_protection_yield_per=efficiency))
+  return(data.frame(Zone=zone_name, Benefit_Pop=pop_val, Cost_Area=cost_val,population_protection_yield_per_unit_treated_area=efficiency))
 }
 
-df_city  <- calc_population_protection_yield_per_treated_area(mask_city,  "Urban Centre")
-df_peri  <- calc_population_protection_yield_per_treated_area(mask_peri,  "Peri-urban")
-df_rural <- calc_population_protection_yield_per_treated_area(mask_rural, "Rural")
+df_city  <- calc_population_protection_yield_per_unit_treated_area(mask_city,  "Urban Centre")
+df_peri  <- calc_population_protection_yield_per_unit_treated_area(mask_peri,  "Peri-urban")
+df_rural <- calc_population_protection_yield_per_unit_treated_area(mask_rural, "Rural")
 
 final_stats <- rbind(df_city, df_peri, df_rural)
 print(final_stats)
 
-write.csv(final_stats, file.path(out_dir, "Population_protection_yield_per_Table_Final_Medium_ssp585_2050.csv"), row.names=FALSE)
+write.csv(final_stats, file.path(out_dir, "population_protection_yield_per_unit_treated_area_Table_Final_Medium_ssp585_2050.csv"), row.names=FALSE)
 
 # 4.Visualization
 cat(">>> Generating Plots...\n")
 
 final_stats$Zone <- factor(final_stats$Zone, levels=c("Urban Centre", "Peri-urban", "Rural"))
 
-p_population_protection_yield_per_treated_area <- ggplot(final_stats, aes(x=Zone, y=ROI, fill=Zone)) +
+p_population_protection_yield_per_unit_treated_area <- ggplot(final_stats, aes(x=Zone, y=population_protection_yield_per_unit_treated_area, fill=Zone)) +
   geom_bar(stat="identity", width=0.6, color="black", alpha=0.8) +
-  geom_text(aes(label=sprintf("%.1f", ROI)), vjust=-0.5, size=5) +
+  geom_text(aes(label=sprintf("%.1f", population_protection_yield_per_unit_treated_area)), vjust=-0.5, size=5) +
   scale_fill_manual(values=c("#E41A1C", "#FF7F00", "#4DAF4A")) + 
   labs(title = "Cost-Effectiveness of Vector Control by Settlement Type",
-       subtitle = "Peri-urban areas show the highest population protection per unit area",
+       subtitle = "Peri-urban areas show the highest population protection per unit treated area",
        y = "Efficiency (Persons Protected / km² Intervention)",
        x = "") +
   theme_classic() +
@@ -188,7 +187,7 @@ p_population_protection_yield_per_treated_area <- ggplot(final_stats, aes(x=Zone
         axis.text.x = element_text(size=12, face="bold"),
         axis.title.y = element_text(size=12))
 
-ggsave(file.path(out_dir, "Population_protection_yield_per_Table_Final_Medium_ssp585_2050.png"), p_population_protection_yield_per_treated_area, width=6, height=5, dpi=300)
+ggsave(file.path(out_dir, "Population_protection_yield_per_unit_treated_Medium_ssp585_2050.png"), p_population_protection_yield_per_treated_area, width=6, height=5, dpi=300)
 
 
 r_zones_raw <- mask(r_smod, mask_success, maskvalues=FALSE, updatevalue=NA)
@@ -233,7 +232,7 @@ if(require("tidyterra") & require("ggplot2")) {
     theme(plot.title = element_text(face="bold", size=14),
           legend.position = "bottom")
   
-  ggsave(file.path(out_dir, "Population_protection_yield_per_Table_Final_Medium_ssp585_2050.png"), p_map, width=8, height=6, dpi=300)
+  ggsave(file.path(out_dir, "Population_protection_yield_per_unit_treated_Final_Medium_ssp585_2050.png"), p_map, width=8, height=6, dpi=300)
 }
 
 savehistory(file = )
